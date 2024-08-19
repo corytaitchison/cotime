@@ -1,7 +1,7 @@
 <script>
-  const subtractdate = (date, x) => { 
+  const adddate = (date, x) => { 
     var newdate = new Date(date);
-    newdate.setTime(newdate.getTime() - x*1000);
+    newdate.setTime(newdate.getTime() + x*1000);
     return newdate
   }
   const daysInThisMonth = () => {
@@ -34,12 +34,12 @@
   <div class={"clock " + (state.truetime ? "truetime" : "cotime")}>
     <h1 class="noselect"> <strong >
       {printtime(state.truetime ? now :
-      subtractdate(now, offset()))}</strong> 
+      adddate(now, offset()))}</strong> 
     </h1>
   </div>
   <h2 class="noselect" style={state.difference ? " " :
     "color: var(--main-bg-color)"}> 
-    True Time is {Math.round(offset() / 60 * 10)/10} minutes ahead.
+    True Time is {Math.round(offset() / 60 * 10)/10} minutes behind.
   </h2>
   <button class={"noselect " + (state.truetime ? "active" : " ")}
     on:click={() => state.truetime = !state.truetime}>
